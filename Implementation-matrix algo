@@ -1,0 +1,67 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Oct 19 15:44:34 2015
+
+@author: Ashu
+"""
+import sys
+M,N,R=raw_input().split()
+M,N,R=int(M),int(N),int(R)
+arr=[[0 for i in range(N)] for i in range(M)];
+for i in range(M):
+    temp=[]
+    inp=raw_input();
+    for x in inp.split():
+        temp.append(int(x))
+    for j in range(N):
+        arr[i][j]=int(temp[j])
+        
+        
+def matrix_rot(R,C,arry,k):
+        row=k-1;
+        col=k-1
+        prev=arry[row+1][C-1];
+        ####shift 1st row
+        i=C-1
+        while i>=col:
+            current=arry[row][i];
+            arry[row][i]=prev;
+            prev=current;
+            i=i-1
+        row=row+1;
+        ###shift 1st colmn
+        j=row;
+        while j<R:
+            current=arry[j][col];
+            arry[j][col]=prev
+            prev=current;
+            j+=1;
+        col=col+1;
+        ####shift last row
+        k=col;
+        while k<C:
+            current=arry[R-1][k];
+            arry[R-1][k]=prev;
+            prev=current;
+            k+=1;
+        R=R-1;
+        ###shift last colmn
+        l=R-1
+        while l>=row:
+            current=arry[l][C-1];
+            arry[l][C-1]=prev
+            prev=current;
+            l=l-1;
+        C=C-1;
+        return arry;
+mid=min(M,N)/2    
+for i in range(mid):
+    rng=R%(2*(M+N-4*i-2))
+    for j in range(rng):
+        arr=matrix_rot(M-i,N-i,arr,i+1)
+    
+for i in range(M):
+    for j in range(N):
+        sys.stdout.write(str(arr[i][j])+" ")
+    print "\r"
+            

@@ -1,0 +1,23 @@
+T=input()
+for i in range(T):
+    s1=raw_input()
+    s2=raw_input()
+    s1=s1.replace(" ","")
+    s1=s1.lower()
+    s2=s2.replace(" ","")
+    s2=s2.lower()
+    a1=[[i for i in range(97,123)],[0 for i in range(26)]]
+    a2=[[i for i in range(97,123)],[0 for i in range(26)]]
+    for i in range(len(s1)):
+        for j in range(26):
+            if ord(s1[i])==a1[0][j]:
+                a1[1][j]+=1;
+    for i in range(len(s2)):
+        for j in range(26):
+            if ord(s2[i])==a2[0][j]:
+                a2[1][j]+=1
+    diff=[0 for i in range(26)]
+    for i in range(26):
+        diff[i]=abs(a2[1][i]-a1[1][i])
+    
+    print sum(diff)

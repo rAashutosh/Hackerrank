@@ -1,0 +1,26 @@
+N=input()
+dic={}
+for i in range(N):
+    s=raw_input()
+    s=s.replace(" ","")
+    l=len(s);
+    s=s.lower()
+    dic[s]={'alphab':[],'freq':[]}
+for s in dic:
+    dic[s]['alphab']=[i for i in range(97,123)]
+    dic[s]['freq']=[0 for i in range(26)]
+    
+for s in dic:
+    for i in range(len(s)):
+        for j in range(26):
+            if ord(s[i])==dic[s]['alphab'][j]:
+                dic[s]['freq'][j]=1
+a=[0 for i in range(26)]
+for s in dic:
+    for j in range(26):
+        a[j]=a[j]+dic[s]['freq'][j]
+count=0       
+for i in range(26):
+     if a[i]>=N:
+         count=count+1;
+print count;
